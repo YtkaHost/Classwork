@@ -5,19 +5,39 @@ class Program
 {
     static void Main(string[] args)
     {
-        string[] countriesOne = { "Ukraine", "Poland", "Germany", "France", "Italy", "Ukraine" };
-        string[] countriesTwo= { "Germany", "France", "Spain", "Poland", "Portugal" };
+        Device[] devicesOne =
+        {
+            new Device { Name = "Phone", Creator = "Apple", Price = 999.99 },
+            new Device { Name = "Tablet", Creator = "Samsung", Price = 500.50 },
+            new Device { Name = "Laptop", Creator = "Lenovo", Price = 1111.11 }
+        };
 
-        var minus = countriesOne.Except(countriesTwo);
-        Console.WriteLine(string.Join(", ", minus));
+        Device[] devicesTwo =
+        {
+            new Device { Name = "Smartwatch", Creator = "Apple", Price = 0 },
+            new Device { Name = "Monitor", Creator = "LG", Price = 12321 },
+            new Device { Name = "Phone", Creator = "Huawei", Price = 3456.43 }
+        };
 
-        var plus = countriesOne.Intersect(countriesTwo);
-        Console.WriteLine(string.Join(", ", plus));
 
-        var sum = countriesOne.Union(countriesTwo);
-        Console.WriteLine(string.Join(", ", sum));
+        var first = devicesOne.Select(d => d.Creator);
+        var second = devicesTwo.Select(d => d.Creator);
 
-        var firstArray = countriesOne.Distinct();
-        Console.WriteLine(string.Join(", ", firstArray));
+        var deviceMinus = first.Except(second);
+        Console.WriteLine(string.Join(", ", deviceMinus));
+
+        var devicePlus = first.Intersect(second);
+        Console.WriteLine(string.Join(", ", devicePlus));
+
+        var deviceSum = first.Union(second);
+        Console.WriteLine(string.Join(", ", deviceSum));
     }
+}
+
+class Device
+{
+    public string Name { get; set; }
+    public string Creator { get; set; }
+    public double Price { get; set; }
+
 }
